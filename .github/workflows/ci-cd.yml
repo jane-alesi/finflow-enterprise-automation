@@ -86,7 +86,7 @@ jobs:
         run: |
           mvn org.owasp:dependency-check-maven:check \
             -DfailBuildOnCVSS=7 \
-            -DsuppressionsLocation=.github/owasp-suppressions.xml
+            -DsuppressionFile=.github/owasp-suppressions.xml
       
       - name: Upload OWASP Report
         uses: actions/upload-artifact@v3
@@ -131,16 +131,15 @@ jobs:
       
       - name: Validate Compliance Rules
         run: |
-          echo "Running compliance validation..."
-          # TODO: Implement compliance rule validation
-          # mvn exec:java -Dexec.mainClass="com.satware.finflow.compliance.validator.ComplianceValidator"
+          echo "Running compliance validation using compliance-engine..."
+          mvn spring-boot:run -pl core/compliance-engine -Dspring-boot.run.arguments="--finflow.compliance.regulations.enabled=MiFID II,PSD3,GDPR,ESG"
       
       - name: Generate Compliance Report
         run: |
           echo "Generating compliance report..."
-          # TODO: Generate compliance report
           mkdir -p target/compliance
           echo "Compliance validation passed" > target/compliance/report.txt
+          # TODO: Integrate actual report generation from compliance-engine
       
       - name: Upload Compliance Report
         uses: actions/upload-artifact@v3
@@ -177,8 +176,7 @@ jobs:
           tags: |
             type=ref,event=branch
             type=ref,event=pr
-            type=sha,prefix={{branch}}-
-      
+            type=sha,prefix=${{branch}}-          
       - name: Build and Push Docker Images
         uses: docker/build-push-action@v5
         with:
