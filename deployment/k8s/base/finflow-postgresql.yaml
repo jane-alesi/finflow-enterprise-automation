@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finflow-postgresql
+  labels:
+    app: finflow-postgresql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: finflow-postgresql
+  template:
+    metadata:
+      labels:
+        app: finflow-postgresql
+    spec:
+      containers:
+        - name: postgresql
+          image: postgres:16-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: finflow
+            - name: POSTGRES_USER
+              value: finflow
+            - name: POSTGRES_PASSWORD
+              value: finflow_dev
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-data
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: finflow-postgresql
+spec:
+  selector:
+    app: finflow-postgresql
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

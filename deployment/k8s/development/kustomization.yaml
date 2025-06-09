@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+
+patches:
+  - path: patches/replicas.yaml
+  - path: patches/image-tags.yaml
+
+# Common labels for all resources in this overlay
+commonLabels:
+  environment: development
+
+# Common annotations for all resources in this overlay
+commonAnnotations:
+  note: "Development environment deployment"

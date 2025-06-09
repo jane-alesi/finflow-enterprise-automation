@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finflow-redis
+  labels:
+    app: finflow-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: finflow-redis
+  template:
+    metadata:
+      labels:
+        app: finflow-redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:7-alpine
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - name: redis-data
+              mountPath: /data
+      volumes:
+        - name: redis-data
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: finflow-redis
+spec:
+  selector:
+    app: finflow-redis
+  ports:
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379

@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finflow-legacy-adapter
+  labels:
+    app: finflow-legacy-adapter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: finflow-legacy-adapter
+  template:
+    metadata:
+      labels:
+        app: finflow-legacy-adapter
+    spec:
+      containers:
+        - name: finflow-legacy-adapter
+          image: ghcr.io/jane-alesi/finflow-enterprise-automation/legacy-adapter:latest
+          ports:
+            - containerPort: 8083
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: kubernetes
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: finflow-db-config
+                  key: spring.datasource.url
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: finflow-db-config
+                  key: spring.datasource.username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: finflow-db-secret
+                  key: spring.datasource.password
+            - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+              valueFrom:
+                configMapKeyRef:
+                  name: finflow-kafka-config
+                  key: spring.kafka.bootstrap-servers
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: finflow-legacy-adapter
+spec:
+  selector:
+    app: finflow-legacy-adapter
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8083
