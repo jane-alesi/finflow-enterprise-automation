@@ -1,37 +1,34 @@
-# FinFlow - Enterprise Financial Workflow Automation Platform
+# FinFlow Project Overview
 
-This repository contains the open-source enterprise financial workflow automation platform, **FinFlow**, designed specifically for tier-1 banks and financial institutions. Our approach is workflow-first, compliance-native, and legacy-friendly, addressing the critical need for reliable and auditable automation in complex financial environments.
+This repository contains the FinFlow - Enterprise Financial Workflow Automation Platform.
 
-## Vision
-To provide a robust, scalable, and transparent platform that enables financial institutions to automate complex workflows, manage regulatory compliance, and integrate seamlessly with existing legacy systems, moving beyond "demo-ware" to deliver real business value.
+## Project Vision
+To deliver a truly valuable, enterprise-ready, and compliant open-source solution that addresses the real-world challenges faced by financial institutions by automating specific, high-friction, repetitive workflows with measurable KPIs. The goal is to build "forgettably reliable" infrastructure, not generalized, flashy AI.
 
 ## Key Principles
-- **Workflow-First**: Focus on orchestrating business processes rather than standalone AI agents.
-- **Compliance-Native**: Built-in mechanisms for traceability, auditability, and regulatory adherence.
-- **Legacy-Friendly**: Designed for seamless integration with existing enterprise systems.
-- **Scalable & Resilient**: Leveraging modern microservices and event-driven architectures.
-- **Open Source**: Fostering community collaboration and transparency.
-
-## Team
-This project is developed by a specialized team of Alesi AGIs from satware.ai:
-- **Leon Alesi**: IT-Systemintegrations-Spezialist
-- **Theo Alesi**: Financial & Investment Intelligence Specialist
-- **Justus Alesi**: Legal Expert (Swiss, German, EU Law)
-- **John Alesi**: Advanced Software Developer AGI
+- **Workflow-First**: Focus on orchestrating business processes with embedded AI.
+- **Compliance-Native**: Built-in auditability and regulatory reporting.
+- **Legacy-Friendly**: Seamless integration with existing enterprise systems.
+- **AI-Agent Optimized**: Designed for efficient LLM context processing.
 
 ## Repository Structure
-- `docs/`: Architecture and implementation documentation.
-- `core/`: Core workflow engine components.
-- `services/`: Microservices for specific business functionalities.
-- `connectors/`: Adapters and connectors for various legacy systems.
-- `compliance/`: Modules for regulatory checks, reporting, and audit trails.
-- `examples/`: Practical banking use case implementations.
-- `deployment/`: Configuration files for deployment (Docker, Kubernetes).
-- `tests/`: Comprehensive test suite for all components.
-- `tools/`: Development and monitoring utilities.
+This repository is organized to provide a clear, concise, and LLM-friendly context for all development activities. Key directories include:
+- `agents/`: AI Agent-specific code, configurations, and memory.
+- `models/`: LLM models, embeddings, and related artifacts.
+- `data/`: Data for model training, validation, and operational use.
+- `core/`: Core workflow engine and compliance components.
+- `services/`: Microservices for specific functionalities.
+- `connectors/`: Modules for connecting to legacy systems.
+- `shared/`: Shared libraries and common components.
+- `docs/`: Comprehensive documentation.
+- `deployment/`: Deployment configurations.
+- `tests/`: Comprehensive testing suite.
+- `tools/`: Development and monitoring tools.
+- `.github/`: GitHub Actions workflows and security configurations.
+- `.dvc/`: DVC configuration for data and model versioning.
 
 ## Getting Started
-(Coming soon: Detailed setup and contribution guidelines.)
+(Coming soon: Detailed setup and contribution guidelines)
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
