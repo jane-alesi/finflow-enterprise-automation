@@ -200,19 +200,30 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
       
+      - name: Setup Kubeconfig
+        run: |
+          echo "Setting up kubeconfig for development environment..."
+          # TODO: Replace with actual secure kubeconfig setup
+          # echo "${{ secrets.KUBE_CONFIG_DEV }}" > ~/.kube/config
+          # chmod 600 ~/.kube/config
+      
       - name: Deploy to Development Environment
         run: |
           echo "Deploying to development environment..."
-          # Placeholder for actual Kubernetes deployment
-          echo "kubectl apply -f deployment/k8s/development/"
-          # kubectl apply -f deployment/k8s/development/
+          # kubectl apply -f deployment/k8s/development/finflow-workflow-engine.yaml
+          # kubectl apply -f deployment/k8s/development/finflow-compliance-engine.yaml
+          # kubectl apply -f deployment/k8s/development/finflow-audit-service.yaml
+          # kubectl apply -f deployment/k8s/development/finflow-transaction-service.yaml
+          # kubectl apply -f deployment/k8s/development/finflow-legacy-adapter.yaml
       
       - name: Run Smoke Tests
         run: |
           echo "Running smoke tests..."
-          # Placeholder for actual smoke tests
-          echo "mvn test -Dtest=SmokeTestSuite"
-          # mvn test -Dtest=SmokeTestSuite
+          # curl -f http://finflow-workflow-engine-dev/actuator/health || exit 1
+          # curl -f http://finflow-compliance-engine-dev/actuator/health || exit 1
+          # curl -f http://finflow-audit-service-dev/actuator/health || exit 1
+          # curl -f http://finflow-transaction-service-dev/actuator/health || exit 1
+          # curl -f http://finflow-legacy-adapter-dev/actuator/health || exit 1
 
   # Deployment Job (Production)
   deploy-prod:
@@ -226,16 +237,27 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
       
+      - name: Setup Kubeconfig
+        run: |
+          echo "Setting up kubeconfig for production environment..."
+          # TODO: Replace with actual secure kubeconfig setup
+          # echo "${{ secrets.KUBE_CONFIG_PROD }}" > ~/.kube/config
+          # chmod 600 ~/.kube/config
+      
       - name: Deploy to Production Environment
         run: |
           echo "Deploying to production environment..."
-          # Placeholder for actual Kubernetes deployment
-          echo "kubectl apply -f deployment/k8s/production/"
-          # kubectl apply -f deployment/k8s/production/
+          # kubectl apply -f deployment/k8s/production/finflow-workflow-engine.yaml
+          # kubectl apply -f deployment/k8s/production/finflow-compliance-engine.yaml
+          # kubectl apply -f deployment/k8s/production/finflow-audit-service.yaml
+          # kubectl apply -f deployment/k8s/production/finflow-transaction-service.yaml
+          # kubectl apply -f deployment/k8s/production/finflow-legacy-adapter.yaml
       
       - name: Run Health Checks
         run: |
           echo "Running health checks..."
-          # Placeholder for actual health checks
-          echo "curl -f http://finflow-api/actuator/health"
-          # curl -f http://finflow-api/actuator/health
+          # curl -f http://finflow-workflow-engine-prod/actuator/health || exit 1
+          # curl -f http://finflow-compliance-engine-prod/actuator/health || exit 1
+          # curl -f http://finflow-audit-service-prod/actuator/health || exit 1
+          # curl -f http://finflow-transaction-service-prod/actuator/health || exit 1
+          # curl -f http://finflow-legacy-adapter-prod/actuator/health || exit 1
