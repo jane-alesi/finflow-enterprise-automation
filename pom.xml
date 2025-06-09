@@ -3,119 +3,31 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.satware.finflow</groupId>
     <artifactId>finflow-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>FinFlow Enterprise Automation Platform</name>
-    <description>Enterprise Financial Workflow Automation Platform for Tier-1 Banks</description>
-    <url>https://github.com/jane-alesi/finflow-enterprise-automation</url>
-
-    <organization>
-        <name>satware AG</name>
-        <url>https://satware.ai</url>
-    </organization>
-
-    <developers>
-        <developer>
-            <id>jane-alesi</id>
-            <name>Jane Alesi</name>
-            <email>ja@satware.com</email>
-            <organization>satware AG</organization>
-            <organizationUrl>https://satware.ai</organizationUrl>
-            <roles>
-                <role>Lead AI Architect</role>
-                <role>Project Coordinator</role>
-            </roles>
-        </developer>
-        <developer>
-            <id>leon-alesi</id>
-            <name>Leon Alesi</name>
-            <organization>satware AG</organization>
-            <roles>
-                <role>IT System Integration Specialist</role>
-            </roles>
-        </developer>
-        <developer>
-            <id>john-alesi</id>
-            <name>John Alesi</name>
-            <organization>satware AG</organization>
-            <roles>
-                <role>Advanced Software Developer AGI</role>
-            </roles>
-        </developer>
-        <developer>
-            <id>justus-alesi</id>
-            <name>Justus Alesi</name>
-            <organization>satware AG</organization>
-            <roles>
-                <role>Legal Expert (Swiss, German, EU Law)</role>
-            </roles>
-        </developer>
-        <developer>
-            <id>theo-alesi</id>
-            <name>Theo Alesi</name>
-            <organization>satware AG</organization>
-            <roles>
-                <role>Financial & Investment Intelligence Specialist</role>
-            </roles>
-        </developer>
-    </developers>
-
     <modules>
-        <module>shared/common-models</module>
-        <module>shared/security-framework</module>
         <module>core/workflow-engine</module>
         <module>core/compliance-engine</module>
         <module>services/audit-service</module>
         <module>services/transaction-service</module>
-        <module>services/risk-service</module>
         <module>connectors/legacy-adapter</module>
-        <module>connectors/core-banking-connector</module>
+        <module>shared/common-models</module>
     </modules>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        
-        <!-- Spring Boot -->
         <spring-boot.version>3.2.1</spring-boot.version>
-        <spring-cloud.version>2023.0.0</spring-cloud.version>
-        
-        <!-- Messaging -->
         <kafka.version>3.6.1</kafka.version>
-        
-        <!-- Database -->
         <postgresql.version>42.7.1</postgresql.version>
-        <redis.version>4.4.6</redis.version>
-        
-        <!-- Testing -->
-        <junit.version>5.10.1</junit.version>
-        <testcontainers.version>1.19.3</testcontainers.version>
-        <cucumber.version>7.15.0</cucumber.version>
-        
-        <!-- Security -->
-        <spring-security.version>6.2.1</spring-security.version>
-        
-        <!-- Compliance -->
-        <drools.version>8.44.0.Final</drools.version>
-        
-        <!-- Monitoring -->
-        <micrometer.version>1.12.1</micrometer.version>
-        
-        <!-- Build Tools -->
-        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
-        <maven-surefire-plugin.version>3.2.2</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.2.2</maven-failsafe-plugin.version>
-        <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <!-- Spring Boot BOM -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -123,109 +35,27 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            
-            <!-- Spring Cloud BOM -->
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+                <version>${kafka.version}</version>
             </dependency>
-            
-            <!-- Testcontainers BOM -->
             <dependency>
-                <groupId>org.testcontainers</groupId>
-                <artifactId>testcontainers-bom</artifactId>
-                <version>${testcontainers.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${spring-boot.version}</version>
-                </plugin>
-                
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven-compiler-plugin.version}</version>
-                    <configuration>
-                        <source>21</source>
-                        <target>21</target>
-                        <parameters>true</parameters>
-                    </configuration>
-                </plugin>
-                
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven-surefire-plugin.version}</version>
-                </plugin>
-                
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>${maven-failsafe-plugin.version}</version>
-                </plugin>
-                
-                <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>${jacoco-maven-plugin.version}</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-        
         <plugins>
             <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>integration-tests</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                    <goal>verify</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
 </project>
