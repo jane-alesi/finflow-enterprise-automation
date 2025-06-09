@@ -1,20 +1,18 @@
-package com.satware.finflow.adapter;
+package com.satware.finflow.legacy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.kafka.annotation.EnableKafka;
 
 /**
  * FinFlow Legacy Adapter Application
  * 
- * Connects FinFlow to various legacy financial systems,
- * handling data transformation and protocol translation.
+ * Provides integration capabilities with various legacy financial systems
+ * through a set of configurable adapters.
  * 
  * @author satware AG - FinFlow Team
  * @version 1.0.0
  */
 @SpringBootApplication
-@EnableKafka
 public class LegacyAdapterApplication {
     
     public static void main(String[] args) {

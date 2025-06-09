@@ -1,0 +1,44 @@
+# FinFlow Legacy Adapter Configuration
+
+spring:
+  application:
+    name: finflow-legacy-adapter
+
+server:
+  port: 8083
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: when-authorized
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+logging:
+  level:
+    com.satware.finflow: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# FinFlow Legacy Adapter Specific Configuration
+finflow:
+  legacy-adapter:
+    core-banking:
+      endpoint: http://localhost:9000/core-banking
+      timeout: 5000ms
+    payment-gateway:
+      endpoint: http://localhost:9001/payment-gateway
+      api-key: your_api_key_here
+    crm:
+      endpoint: http://localhost:9002/crm
+    integration:
+      retry-attempts: 3
+      retry-delay: 1000ms
+      circuit-breaker-enabled: true
