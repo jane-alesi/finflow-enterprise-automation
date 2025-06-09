@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: finflow-db-config
+data:
+  spring.datasource.url: jdbc:postgresql://finflow-postgresql:5432/finflow
+  spring.datasource.username: finflow
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: finflow-db-secret
+type: Opaque
+data:
+  spring.datasource.password: <BASE64_ENCODED_FINFLOW_DB_PASSWORD>

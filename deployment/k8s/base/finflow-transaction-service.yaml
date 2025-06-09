@@ -22,6 +22,26 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: kubernetes
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: finflow-db-config
+                  key: spring.datasource.url
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: finflow-db-config
+                  key: spring.datasource.username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: finflow-db-secret
+                  key: spring.datasource.password
+            - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+              valueFrom:
+                configMapKeyRef:
+                  name: finflow-kafka-config
+                  key: spring.kafka.bootstrap-servers
 ---
 apiVersion: v1
 kind: Service
