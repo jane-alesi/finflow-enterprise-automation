@@ -203,13 +203,15 @@ jobs:
       - name: Deploy to Development Environment
         run: |
           echo "Deploying to development environment..."
-          # TODO: Implement Kubernetes deployment
+          # Placeholder for actual Kubernetes deployment
+          echo "kubectl apply -f deployment/k8s/development/"
           # kubectl apply -f deployment/k8s/development/
       
       - name: Run Smoke Tests
         run: |
           echo "Running smoke tests..."
-          # TODO: Implement smoke tests
+          # Placeholder for actual smoke tests
+          echo "mvn test -Dtest=SmokeTestSuite"
           # mvn test -Dtest=SmokeTestSuite
 
   # Deployment Job (Production)
@@ -227,11 +229,13 @@ jobs:
       - name: Deploy to Production Environment
         run: |
           echo "Deploying to production environment..."
-          # TODO: Implement Kubernetes deployment
+          # Placeholder for actual Kubernetes deployment
+          echo "kubectl apply -f deployment/k8s/production/"
           # kubectl apply -f deployment/k8s/production/
       
       - name: Run Health Checks
         run: |
           echo "Running health checks..."
-          # TODO: Implement health checks
+          # Placeholder for actual health checks
+          echo "curl -f http://finflow-api/actuator/health"
           # curl -f http://finflow-api/actuator/health
