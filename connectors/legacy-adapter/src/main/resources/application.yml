@@ -3,22 +3,6 @@
 spring:
   application:
     name: finflow-legacy-adapter
-  
-  kafka:
-    bootstrap-servers: localhost:9092
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
-      acks: all
-      retries: 3
-      properties:
-        enable.idempotence: true
-    consumer:
-      group-id: finflow-legacy-adapter
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      auto-offset-reset: earliest
-      enable-auto-commit: false
 
 server:
   port: 8083
@@ -39,25 +23,22 @@ management:
 logging:
   level:
     com.satware.finflow: INFO
-    org.springframework.kafka: WARN
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 
-# FinFlow Legacy Adapter Configuration
+# FinFlow Legacy Adapter Specific Configuration
 finflow:
   legacy-adapter:
-    protocols:
-      enabled: [FIX, SWIFT, ISO_20022, OFX]
-      default: ISO_20022
-    connection:
+    core-banking:
+      endpoint: http://localhost:9000/core-banking
       timeout: 5000ms
-      max-retries: 3
-    data-mapping:
-      schema-registry-url: http://localhost:8081/schemas
-  
-  kafka:
-    topics:
-      legacy-inbound: finflow.legacy.inbound
-      legacy-outbound: finflow.legacy.outbound
-      audit-events: finflow.audit.events
+    payment-gateway:
+      endpoint: http://localhost:9001/payment-gateway
+      api-key: your_api_key_here
+    crm:
+      endpoint: http://localhost:9002/crm
+    integration:
+      retry-attempts: 3
+      retry-delay: 1000ms
+      circuit-breaker-enabled: true
