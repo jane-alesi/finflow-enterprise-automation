@@ -1,0 +1,83 @@
+# FinFlow Compliance Engine Configuration
+
+spring:
+  application:
+    name: finflow-compliance-engine
+  
+  datasource:
+    url: jdbc:postgresql://localhost:5432/finflow
+    username: finflow
+    password: finflow_dev
+    driver-class-name: org.postgresql.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+      retries: 3
+      properties:
+        enable.idempotence: true
+    consumer:
+      group-id: finflow-compliance-engine
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: when-authorized
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+logging:
+  level:
+    com.satware.finflow: INFO
+    org.drools: WARN
+    org.springframework.kafka: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# FinFlow Compliance Configuration
+finflow:
+  compliance:
+    regulations:
+      enabled: ["MiFID II", "PSD3", "GDPR", "ESG"]
+      strict-mode: true
+      validation-timeout: 30s
+    
+    audit:
+      enabled: true
+      integrity-checks: true
+      retention-period: 7y
+      immutable-storage: true
+    
+    rules:
+      engine: drools
+      reload-interval: 300s
+      cache-enabled: true
+  
+  kafka:
+    topics:
+      compliance-events: finflow.compliance.events
+      audit-events: finflow.audit.events
+      violation-alerts: finflow.compliance.violations
