@@ -176,7 +176,8 @@ jobs:
           tags: |
             type=ref,event=branch
             type=ref,event=pr
-            type=sha,prefix=${{branch}}-          
+            type=sha,prefix=${{ github.ref_name }}-
+      
       - name: Build and Push Docker Images
         uses: docker/build-push-action@v5
         with:
