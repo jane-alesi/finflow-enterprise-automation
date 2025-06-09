@@ -1,0 +1,81 @@
+# Integration Test Configuration for FinFlow Workflow Engine
+# This configuration is used for integration tests with TestContainers
+
+spring:
+  profiles:
+    active: integration-test
+    
+  # Database Configuration (will be overridden by TestContainers)
+  datasource:
+    url: jdbc:postgresql://localhost:5432/finflow_test
+    username: test
+    password: test
+    driver-class-name: org.postgresql.Driver
+    
+  # JPA Configuration for Integration Tests
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        
+  # Kafka Configuration (will be overridden by TestContainers)
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-offset-reset: earliest
+      group-id: integration-test-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      
+  # Redis Configuration (will be overridden by TestContainers)
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 5000ms
+    
+  # Enable Liquibase for integration tests
+  liquibase:
+    enabled: false  # We'll use JPA DDL for simplicity in tests
+    
+# Logging Configuration for Integration Tests
+logging:
+  level:
+    com.satware.finflow: DEBUG
+    org.springframework.kafka: INFO
+    org.springframework.data.redis: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.testcontainers: INFO
+    
+# Integration test specific properties
+finflow:
+  workflow:
+    engine:
+      test-mode: true
+      async-processing: true  # Test real async behavior
+      timeout: 30000  # 30 seconds timeout for integration tests
+  compliance:
+    regulations:
+      enabled: true  # Enable compliance checks in integration tests
+      
+# Actuator configuration for integration tests
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+      
+# TestContainers specific configuration
+testcontainers:
+  reuse:
+    enable: true  # Reuse containers across test runs for performance
