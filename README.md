@@ -1,34 +1,42 @@
-# FinFlow Project Overview
-
-This repository contains the FinFlow - Enterprise Financial Workflow Automation Platform.
-
-## Project Vision
-To deliver a truly valuable, enterprise-ready, and compliant open-source solution that addresses the real-world challenges faced by financial institutions by automating specific, high-friction, repetitive workflows with measurable KPIs. The goal is to build "forgettably reliable" infrastructure, not generalized, flashy AI.
-
-## Key Principles
-- **Workflow-First**: Focus on orchestrating business processes with embedded AI.
-- **Compliance-Native**: Built-in auditability and regulatory reporting.
-- **Legacy-Friendly**: Seamless integration with existing enterprise systems.
-- **AI-Agent Optimized**: Designed for efficient LLM context processing.
-
-## Repository Structure
-This repository is organized to provide a clear, concise, and LLM-friendly context for all development activities. Key directories include:
-- `agents/`: AI Agent-specific code, configurations, and memory.
-- `models/`: LLM models, embeddings, and related artifacts.
-- `data/`: Data for model training, validation, and operational use.
-- `core/`: Core workflow engine and compliance components.
-- `services/`: Microservices for specific functionalities.
-- `connectors/`: Modules for connecting to legacy systems.
-- `shared/`: Shared libraries and common components.
-- `docs/`: Comprehensive documentation.
-- `deployment/`: Deployment configurations.
-- `tests/`: Comprehensive testing suite.
-- `tools/`: Development and monitoring tools.
-- `.github/`: GitHub Actions workflows and security configurations.
-- `.dvc/`: DVC configuration for data and model versioning.
-
-## Getting Started
-(Coming soon: Detailed setup and contribution guidelines)
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+IyBGaW5GbG93IFByb2plY3QgT3ZlcnZpZXcKClRoaXMgcmVwb3NpdG9yeSBj
+b250YWlucyB0aGUgRmluRmxvdyAtIEVudGVycHJpc2UgRmluYW5jaWFsIFdv
+cmtmbG93IEF1dG9tYXRpb24gUGxhdGZvcm0uCgojIyBQcm9qZWN0IFZpc2lv
+bgpUbyBkZWxpdmVyIGEgdHJ1bHkgdmFsdWFibGUsIGVudGVycHJpc2UtcmVh
+ZHksIGFuZCBjb21wbGlhbnQgb3Blbi1zb3VyY2Ugc29sdXRpb24gdGhhdCBh
+ZGRyZXNzZXMgdGhlIHJlYWwtd29ybGQgY2hhbGxlbmdlcyBmYWNlZCBieSBm
+aW5hbmNpYWwgaW5zdGl0dXRpb25zIGJ5IGF1dG9tYXRpbmcgc3BlY2lmaWMs
+IGhpZ2gtZnJpY3Rpb24sIHJlcGV0aXRpdmUgd29ya2Zsb3dzIHdpdGggbWVh
+c3VyYWJsZSBLUElzLiBUaGUgZ29hbCBpcyB0byBidWlsZCAiZm9yZ2V0dGFi
+bHkgcmVsaWFibGUiIGluZnJhc3RydWN0dXJlLCBub3QgZ2VuZXJhbGl6ZWQs
+IGZsYXNoeSBBSS4KCiMjIEtleSBQcmluY2lwbGVzCi0gKipXb3JrZmxvdy1G
+aXJzdCoqOiBGb2N1cyBvbiBvcmNoZXN0cmF0aW5nIGJ1c2luZXNzIHByb2Nl
+c3NlcyB3aXRoIGVtYmVkZGVkIEFJLgotICoqQ29tcGxpYW5jZS1OYXRpdmUq
+KjogQnVpbHQtaW4gYXVkaXRhYmlsaXR5IGFuZCByZWd1bGF0b3J5IHJlcG9y
+dGluZy4KLSAqKkxlZ2FjeS1GcmllbmRseSoqOiBTZWFtbGVzcyBpbnRlZ3Jh
+dGlvbiB3aXRoIGV4aXN0aW5nIGVudGVycHJpc2Ugc3lzdGVtcy4KLSAqKkFJ
+LUFnZW50IE9wdGltaXplZCoqOiBEZXNpZ25lZCBmb3IgZWZmaWNpZW50IExM
+TSBjb250ZXh0IHByb2Nlc3NpbmcuCgojIyBSZXBvc2l0b3J5IFN0cnVjdHVy
+ZQpUaGlzIHJlcG9zaXRvcnkgaXMgb3JnYW5pemVkIHRvIHByb3ZpZGUgYSBj
+bGVhciwgY29uY2lzZSwgYW5kIExMTS1mcmllbmRseSBjb250ZXh0IGZvciBh
+bGwgZGV2ZWxvcG1lbnQgYWN0aXZpdGllcy4gS2V5IGRpcmVjdG9yaWVzIGlu
+Y2x1ZGU6Ci0gYGFnZW50cy9gOiBBSSBBZ2VudC1zcGVjaWZpYyBjb2RlLCBj
+b25maWd1cmF0aW9ucywgYW5kIG1lbW9yeS4KLSBgbW9kZWxzL2A6IExMTSBt
+b2RlbHMsIGVtYmVkZGluZ3MsIGFuZCByZWxhdGVkIGFydGlmYWN0cy4KLSBg
+ZGF0YS9gOiBEYXRhIGZvciBtb2RlbCB0cmFpbmluZywgdmFsaWRhdGlvbiwg
+YW5kIG9wZXJhdGlvbmFsIHVzZS4KLSBgY29yZS9gOiBDb3JlIHdvcmtmbG93
+IGVuZ2luZSBhbmQgY29tcGxpYW5jZSBjb21wb25lbnRzLgotIGBzZXJ2aWNl
+cy9gOiBNaWNyb3NlcnZpY2VzIGZvciBzcGVjaWZpYyBmdW5jdGlvbmFsaXR5
+LgotIGBjb25uZWN0b3JzL2A6IE1vZHVsZXMgZm9yIGNvbm5lY3RpbmcgdG8g
+bGVnYWN5IHN5c3RlbXMuCi0gYHNocmVkL2A6IFNoYXJlZCBsaWJyYXJpZXMg
+YW5kIGNvbW1vbiBjb21wb25lbnRzLgotIGBkb2NzL2A6IENvbXByZWhlbnNp
+dmUgZG9jdW1lbnRhdGlvbi4KLSBgZGVwbG95bWVudC9gOiBEZXBsb3ltZW50
+IGNvbmZpZ3VyYXRpb25zLgotIGB0ZXN0cy9gOiBDb21wcmVoZW5zaXZlIHRl
+c3Rpbmcgc3VpdGUuCi0gYHRvb2xzL2A6IERldmVsb3BtZW50IGFuZCBtb25p
+dG9yaW5nIHRvb2xzLgotIGAuZ2l0aHViL2A6IEdpdEh1YiBBY3Rpb25zIHdv
+cmtmbG93cyBhbmQgc2VjdXJpdHkgY29uZmlndXJhdGlvbnMuCi0gYC5kdmMv
+YDogRFZDIGNvbmZpZ3VyYXRpb24gZm9yIGRhdGEgYW5kIG1vZGVsIHZlcnNp
+b25pbmcuCgojIyBHZXR0aW5nIFN0YXJ0ZWQKKENvbWluZyBzb29uOiBEZXRh
+aWxlZCBzZXR1cCBhbmQgY29udHJpYnV0aW9uIGd1aWRlbGluZXMpCgojIyBM
+aWNlbnNlClRoaXMgcHJvamVjdCBpcyBsaWNlbnNlZCB1bmRlciB0aGUgTUlU
+IExpY2Vuc2UgLSBzZWUgdGhlIFtMSUNFTlNFXShMSUNFTlNlKSBmaWxlIGZv
+ciBkZXRhaWxzLgoKLiAodHJpZ2dlciBjaS9jZCBwaXBlbGluZSk=
