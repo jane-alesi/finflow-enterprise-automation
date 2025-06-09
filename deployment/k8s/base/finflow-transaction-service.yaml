@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finflow-transaction-service
+  labels:
+    app: finflow-transaction-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: finflow-transaction-service
+  template:
+    metadata:
+      labels:
+        app: finflow-transaction-service
+    spec:
+      containers:
+        - name: finflow-transaction-service
+          image: ghcr.io/jane-alesi/finflow-enterprise-automation/transaction-service:latest
+          ports:
+            - containerPort: 8082
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: kubernetes
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: finflow-transaction-service
+spec:
+  selector:
+    app: finflow-transaction-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8082

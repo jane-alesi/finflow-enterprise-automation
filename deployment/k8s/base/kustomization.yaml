@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - finflow-workflow-engine.yaml
+  - finflow-compliance-engine.yaml
+  - finflow-audit-service.yaml
+  - finflow-transaction-service.yaml
+  - finflow-legacy-adapter.yaml

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finflow-audit-service
+  labels:
+
+    app: finflow-audit-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: finflow-audit-service
+  template:
+    metadata:
+      labels:
+        app: finflow-audit-service
+    spec:
+      containers:
+        - name: finflow-audit-service
+          image: ghcr.io/jane-alesi/finflow-enterprise-automation/audit-service:latest
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: kubernetes
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: finflow-audit-service
+spec:
+  selector:
+    app: finflow-audit-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8081
